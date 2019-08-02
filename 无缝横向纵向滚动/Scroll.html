@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝左右上下滚动</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="left_right" >
+        <h3>左右无缝滚动</h3>
+    </div>
+    <div class="scroll_1" >
+        <hr>
+        <div id="scroll_list01"  >
+            <table border="0" align="center" cellpadding="1" cellspacing="1">
+                <tr>
+                    <td valign="top" id="marquePic1">
+                        <table width='100%' border='0' cellspacing='0'>
+                            <tr>
+                                <td  align="center">
+                                    <img  src="images/01.jpg" >
+                                </td>
+                                <td  align="center">
+                                    <img  src="images/02.jpg" >
+                                </td>
+                                <td  align="center">
+                                    <img  src="images/03.jpg" >
+                                </td>
+                                <td  align="center">
+                                    <img  src="images/04.jpg" >
+                                </td>
+                                <td  align="center">
+                                    <img  src="images/05.jpg" >
+                                </td>
+                                <td  align="center">
+                                    <img  src="images/06.jpg" >
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td  align="center" valign="top">
+                        <img  src="images/01.jpg" >
+                    </td>
+                    <td  align="center" valign="top">
+                        <img  src="images/02.jpg" >
+                    </td>
+                    <td  align="center" valign="top">
+                        <img  src="images/03.jpg" >
+                    </td>
+                    <td  align="center" valign="top">
+                        <img  src="images/04.jpg" >
+                    </td>
+                    <td  align="center" valign="top">
+                        <img  src="images/05.jpg" >
+                    </td>
+                    <td  align="center" valign="top">
+                        <img  src="images/06.jpg" >
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br><hr>
+
+    <div class="top_bottom" >
+        <h3>上下无缝滚动</h3>
+    </div>
+    <div class="scroll_2">
+        <div class="list_lh">
+            <ul class="show1" >
+                <li ><img  src="images/01.jpg" ></li>
+                <li ><img  src="images/02.jpg" ></li>
+                <li ><img  src="images/03.jpg" ></li>
+                <li ><img  src="images/04.jpg" ></li>
+                <li ><img  src="images/05.jpg" ></li>
+                <li ><img  src="images/06.jpg" ></li>
+            </ul>
+            <ul class="show2">
+                <li ><img  src="images/01.jpg" ></li>
+                <li ><img  src="images/02.jpg" ></li>
+                <li ><img  src="images/03.jpg" ></li>
+                <li ><img  src="images/04.jpg" ></li>
+                <li ><img  src="images/05.jpg" ></li>
+                <li ><img  src="images/06.jpg" ></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+<style>
+    .left_right,.top_bottom{text-align: center}
+    .scroll_1{ margin-top: 30px}
+    #scroll_list01{margin-top:10px;overflow: hidden;width:100%;text-align: center}
+    .scroll_2{text-align: center}
+    .list_lh{ width:450px;height:800px;overflow-y: hidden;}
+</style>
+<script type="text/javascript">
+    //左右无缝滚动播放
+    let speed=20;
+    let companyScroll = document.getElementById("scroll_list01");
+    let marquePic1 = document.getElementById("marquePic1");
+    function Marquee(){
+        if(companyScroll.scrollLeft>=marquePic1.scrollWidth){
+            companyScroll.scrollLeft=0
+        }else{
+            companyScroll.scrollLeft++
+        }
+    }
+    let MyMar =setInterval(Marquee,speed);
+    companyScroll.onmouseover=function() {clearInterval(MyMar)};
+    companyScroll.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+
+
+    //上下无缝滚动播放
+    //企业轮播
+    let main = document.getElementsByClassName("list_lh")[0];
+    let show1 = document.getElementsByClassName("show1")[0];
+    // let show2 = document.getElementsByClassName("show2")[0];
+    let timeId;
+    // show2.innerHTML = show1.innerHTML;
+    timeId = setInterval(play,25);
+    function play(){
+        if (main.scrollTop >= show1.offsetHeight) {
+            main.scrollTop=0;
+        }else{
+            main.scrollTop++;
+        }
+    }
+    play();
+    main.onmouseover = function(){
+        clearInterval(timeId)
+    };
+    main.onmouseout = function(){
+        timeId = setInterval(play,25);
+    };
+</script>
+</html>
